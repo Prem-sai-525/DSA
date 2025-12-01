@@ -1,0 +1,147 @@
+class Node:
+    def __init__(self, data):
+        self.data = data
+        self.ref = None
+
+class LinkedList:
+    def __init__(self):
+        self.head = None
+
+    # Print all the elements
+    def print_elements(self):
+        if self.head is None:
+            print("empty")
+        else:
+            n = self.head
+            while n is not None:
+                print(n.data, end="->")
+                n = n.ref
+            print()
+
+    # Add at beginning
+    def add_at_beginning(self, data):
+        new_node = Node(data)
+        new_node.ref = self.head
+        self.head = new_node
+
+    # Add at end
+    def add_at_end(self, data):
+        new_node = Node(data)
+        if self.head is None:
+            self.head = new_node
+        else:
+            n = self.head
+            while n.ref is not None:
+                n = n.ref
+            n.ref = new_node
+
+    # Add before a given value
+    def add_before(self, data, x):
+        if self.head is None:
+            print("The list is empty")
+        elif x == self.head.data:
+            new_node = Node(data)
+            new_node.ref = self.head
+            self.head = new_node
+        else:
+            new_node = Node(data)
+            n = self.head
+            while n.ref is not None:
+                if n.ref.data == x:
+                    new_node.ref = n.ref
+                    n.ref = new_node
+                    return
+                n = n.ref
+            print(f"Value {x} not found in the list.")
+
+    # Add after a given value
+    def add_after(self, data, x):
+        if self.head is None:
+            print("The list is empty")
+        else:
+            n = self.head
+            while n is not None:
+                if n.data == x:
+                    new_node = Node(data)
+                    new_node.ref = n.ref
+                    n.ref = new_node
+                    return
+                n = n.ref
+            print(f"Value {x} not found in the list.")
+
+    # Delete at beginning
+    def delete_at_beginning(self):
+        if self.head is not None:
+            self.head = self.head.ref
+
+    # Delete at end
+    def delete_at_end(self):
+        if self.head is None:
+            print("The list is empty")
+        elif self.head.ref is None:
+            self.head = None
+        else:
+            n = self.head
+            while n.ref.ref is not None:
+                n = n.ref
+            n.ref = None
+
+    # Delete by value
+    def delete_by_value(self, x):
+        if self.head is None:
+            print("The Linked list is empty")
+        elif self.head.data == x:
+            self.head = self.head.ref
+        else:
+            n = self.head
+            while n.ref is not None:
+                if n.ref.data == x:
+                    n.ref = n.ref.ref
+                    return
+                n = n.ref
+            print(f"Value {x} not found in the list.")
+
+# Example Usage
+ll = LinkedList()
+ll.add_at_beginning(30)
+ll.print_elements()
+ll.add_at_end(40)
+ll.print_elements()
+ll.add_at_beginning(80)
+ll.print_elements()
+ll.add_at_end(50)
+ll.print_elements()
+ll.add_before(25, 40)
+ll.print_elements()
+ll.add_before(35, 25)
+ll.print_elements()
+ll.add_after(39, 25)
+ll.print_elements()
+ll.add_before(60, 30)
+ll.print_elements()
+ll.add_after(70, 60)
+ll.print_elements()
+ll.delete_at_beginning()
+ll.print_elements()
+ll.delete_at_end()
+ll.print_elements()
+ll.delete_by_value(70)
+ll.print_elements()
+ll.delete_by_value(35)
+ll.print_elements()
+
+
+#OUTPUT
+30->
+30->40->
+80->30->40->
+80->30->40->50->
+80->30->25->40->50->
+80->30->35->25->40->50->
+80->30->35->25->39->40->50->
+80->60->30->35->25->39->40->50->
+80->60->70->30->35->25->39->40->50->
+60->70->30->35->25->39->40->50->
+60->70->30->35->25->39->40->
+60->30->35->25->39->40->
+60->30->25->39->40->
