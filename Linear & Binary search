@@ -20,5 +20,30 @@ found at index 0
 found at index 4
 
 
+def BinarySearch():
+    low=0
+    high=len(n)-1
+    found=False
+    while low<=high and not found:
+        mid=(low+high)//2
+        if a==n[mid]:
+            found=True
+        elif a>n[mid]:
+            low=mid+1
+        else:
+            high=mid-1
+    if found is True:
+        print("found")
+    else:
+        print("not found")
 
+n=[40,28,58,68,59]
+n.sort()
+print(n)
+a=int(input("Enter a:"))
+BinarySearch()
 
+#OUTPUT
+[28, 40, 58, 59, 68]
+Enter a:40
+found
