@@ -1,0 +1,24 @@
+def LinearSearch():
+    b=[]
+    flag=False
+    for i in range(len(n)):
+        if a==n[i]:
+            flag=True
+            b.append(i)
+            
+    if flag==True:
+        for i in b:
+            print(f"found at index {i}")
+    else:
+        print("Not found")
+n=[50,20,30,40,50]
+a=int(input("Enter a:"))
+LinearSearch()
+
+#OUTPUTEnter a:50
+found at index 0
+found at index 4
+
+
+
+
